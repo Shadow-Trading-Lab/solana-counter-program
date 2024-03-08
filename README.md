@@ -8,10 +8,7 @@ https://emersonliuuu.notion.site/Basic-Solana-Developing-Process-with-Anchor-Fra
 Run the following commands to start the project:
 
 ```bash
-git clone https://github.com/ak8893893/counter-program.git
-
-cd counter-program
-git submodule update --init
+git clone https://github.com/ak8893893/solana-counter-program.git
 
 anchor keys list
 ```
