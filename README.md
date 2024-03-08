@@ -46,9 +46,21 @@ Use the frontend to test your Counter Program
 3. Claim the airdrop if you don't have the testing sol in you wallet.
 ![alt text](image.png)
 4. Click Counter to switch the page of counter Program.
-![alt text](image-1.png)
+![alt text](image-3.png)
 5. Initialize an account.
 6. Add an even number into the account's value.
 7. Minus an odd number into the account's value.
 8. You can check you account's value on the front end or solscan with you Counter Address. For example: https://explorer.solana.com/address/2qASV856oDJE6yQBKRxAZuKUHjUoU52N656JmeFyoKqo/anchor-account?cluster=devnet
 ![alt text](image-2.png)
+
+---
+
+
+# Additional information
+
+### Program key replace
+The command of `$ anchor keys list` will create a keypair.json file in your ./target/depoly/  
+If you want to change your Program key pair, you can delete the ./target/depoly/my_program-keypair.json and use the command of `$ anchor keys list` and it will create another new keypair file for you.  
+
+### Update IDL and Types files
+Update frontend's idl file and types file after you update your smart contrat. Copy `./target/idl/my_program.json` and `./target/types/my_program.ts` into `./app/src/idl/` and replace the old version's files.
