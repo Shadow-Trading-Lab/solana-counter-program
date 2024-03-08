@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-declare_id!("6rNs6snZWy2m5qydQDGN8XgAtePMybc6MrukynqQx1ZP");
+declare_id!("9KHoG32S9i4RWc5Qp4z3EDLDfwiQ3uZHQSdubyLsAJF");
 
 #[program]
 pub mod my_program {
@@ -33,6 +33,15 @@ pub mod my_program {
         Ok(())
     }
 
+    pub fn times_even(ctx: Context<TimesEven>, value: u64) -> Result<()> {
+        require!(value % 2 == 0, ErrorCode::ValueIsNotEven);
+        let my_counter = &mut ctx.accounts.my_counter;
+        my_counter.value = my_counter.value.checked_mul(value).unwrap();
+        msg!("value: {}", my_counter.value);
+
+        Ok(())
+    }
+
     pub fn close(_ctx: Context<Close>) -> Result<()> {
         Ok(())
     }
@@ -57,6 +66,13 @@ pub struct AddEven<'info> {
 
 #[derive(Accounts)]
 pub struct MinusOdd<'info> {
+    #[account(mut, seeds = [b"my-counter", user.key().as_ref()], bump)]
+    pub my_counter: Account<'info, MyCounter>,
+    pub user: Signer<'info>,
+}
+
+#[derive(Accounts)]
+pub struct TimesEven<'info> {
     #[account(mut, seeds = [b"my-counter", user.key().as_ref()], bump)]
     pub my_counter: Account<'info, MyCounter>,
     pub user: Signer<'info>,
