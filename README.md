@@ -26,6 +26,7 @@ my_program = "------Your key here------"`
 Then run the following commands:
 
 ```bash
+yarn
 anchor test
 ```
 
